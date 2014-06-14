@@ -6,14 +6,16 @@
 
     <title>@yield('title')</title>
     <link href="/css/style.css" rel="stylesheet">
-    <!--<link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">-->
+    <link href="/css/font-awesome.css" rel="stylesheet">
+    <!--<link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css" rel="stylesheet">-->
+
 </head>
 
 <body class="Tema2">
 
 <div class="Wrap">
-    <div class="Mudar" title="Alterar Tema"></div>
-    <a class="Logout" title="Sair do VAMO" href="/logout"></a>
+    <div class="Mudar Medio" title="Alterar Tema"><i class="fa fa-eye"></i></div>
+    <a class="Logout Medio" title="Sair do VAMO" href="/logout"><i class="fa fa-sign-out"></i></a>
     @include('IncSite.HeaderMain')
     @yield('conteudo')
 </div>

@@ -31,7 +31,7 @@
             ';
         }
 
-        echo '<a type="button" class="Button info" title="Inserir '.$title.'" href="'.(($route)?$route.'/inserir':'').'"><i class="Inserir"></i>Inserir</a>';
+        echo '<a type="button" class="Button info" title="Inserir '.$title.'" href="'.(($route)?$route.'/inserir':'').'"><i class="fa fa-plus"></i><div class="ITit">Inserir</div></a>';
 
         if ($produtosTipo[0]) {
             foreach ($produtosTipo as $produtosTipoRow) { //DADOS
@@ -43,9 +43,9 @@
                                 ?'<div type="button" class="success">Ativado</div>'
                                 :'<div type="button" class="danger">Desativado</div>').'</td>
                         <td>
-                        <div>
-                            <a type="button" class="warning alterar" title="Editar '.$produtosTipoRow->nome_ptp.'" href="'.(($route)?$route.'/'.$produtosTipoRow->id_ptp.'/editar':'').'"><i class="Editar"></i></a>
-                            <a type="button" class="danger  deletar" title="Deletar '.$produtosTipoRow->nome_ptp.'" href="'.(($route)?$route.'/'.$produtosTipoRow->id_ptp:'').'"><i class="Deletar"></i></a>
+                        <div class="IBlock">
+                            <a type="button" class="warning alterar" title="Editar '.$produtosRow->nome_pro.'" href="'.(($route)?$route.'/'.$produtosRow->id_pro.'/editar':'').'"><i class="fa fa-edit"></i></a>
+                            <a type="button" class="danger  deletar" title="Deletar '.$produtosRow->nome_pro.'" href="'.(($route)?$route.'/'.$produtosRow->id_pro:'').'"><i class="fa fa-times"></i></a>
                         </div>
                         </td>
                     </tr>
