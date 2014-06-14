@@ -20,7 +20,7 @@
             }
             ?>
             <div class="Block Center">
-                <form class="Logon" id="entrar" name="entrar" method="post" action="">
+                <form class="Logon" id="entrar" name="entrar" method="post" action="/entrar">
                     <div class="Field">
                         <input class="Input" placeholder="E-mail" id="email_usr" name="email_usr" type="email"<?php echo $value;?> autofocus>
                     </div>

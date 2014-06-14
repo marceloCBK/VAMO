@@ -53,14 +53,14 @@ return array(
             'host'      => 'localhost',
             'database'  => 'vamo_db',
             'username'  => 'root',
-            'password'  => '',*/
-
-
-            //WEB
-            'host'      => 'cbkweb.com.br',
-            'database'  => 'ulbrasub_vamo',
-            'username'  => 'vamo',
-            'password'  => 'vubeqesyp',
+            'password'  => '',
+            */
+      
+            //nitrous
+            'host'      => 'localhost',
+            'database'  => 'vamo_db',
+            'username'  => 'root',
+            'password'  => '123',
 
 			'charset'   => 'utf8',
 			'collation' => 'utf8_general_ci',

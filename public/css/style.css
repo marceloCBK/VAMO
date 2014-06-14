@@ -134,8 +134,28 @@
     background: inherit;
     position: absolute;
     top: 10px;
-    right: 10px;
+    right: 40px;
     cursor: pointer;
+    opacity: 0.5;
+}
+
+.Logout {
+    float: right;
+    width: 20px;
+    height: 20px;
+    padding: 5px;
+    border: 1px solid;
+    background: inherit;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    opacity: 0.5;
+}
+
+.Mudar:hover, 
+.Logout:hover {
+    opacity: 1;
+    border-color: inherit;
 }
 
 .ErrorBox {
@@ -208,6 +228,11 @@
 }
 
 /* FORM -> */
+.Form {
+    float: left;
+    min-width: 400px;
+}
+
 .Field {
     float: left;
     width: 100%;
@@ -262,10 +287,12 @@ table tbody tr td{
     animation: marca 0.3s linear 0s 4 alternate
 }
 
+/*
 @-webkit-keyframes marca {
     from {background: inherit;}
     to {background: rgba(255, 255, 255, 0.6) ;}
 }
+*/
 
 @keyframes marca {
     from {background: inherit;}
@@ -319,9 +346,11 @@ table tbody tr td{
     display: -webkit-flex;
 
     /* W3C */
+    /*
     display:box;
     box-pack:center;
     box-align:center;
+    */
     align-items: center;
     justify-content: center;
     display: flex;
