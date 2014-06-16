@@ -40,6 +40,7 @@ Route::get('logout', function () {
 Route::get      ('entrar'                       , array('uses' => 'ConteudoController@entrar'))->before('guest');
 Route::get      ('/'                            , array('uses' => 'ConteudoController@Index'))->before('auth');
 Route::get      ('inicio'                       , array('uses' => 'ConteudoController@Index'))->before('auth');
+Route::get      ('mudar'                        , array('uses' => 'ConteudoController@mudarTema'));
 
 Route::get      ('produtos'                     , array('as' => 'produtos'            , 'uses' => 'ProdutosController@index'))->before('auth');
 Route::get      ('produtos/inserir'             , array('as' => 'produtos.create'     , 'uses' => 'ProdutosController@create'))->before('auth');

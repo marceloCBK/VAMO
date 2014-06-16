@@ -16,23 +16,24 @@
 @section('conteudo')
 <div class="ContentMain Center">
     <div class="ContentWrap">
-        <h1><% $title %></h1>
-
         <?php
-        $resp = json_decode(Session::get('resp'));
-        //print_r($resp);
-        if ($resp){
-            $mensagem = implode('<br />', $resp->mensagem);
+        echo '
+        <div class="TopContents">
+            <div class="Titulo">'.$title.'</div>
+            <a type="button" class="Button info" title="Inserir '.$title.'" href="'.(($route)?$route.'/inserir':'').'"><i class="fa fa-plus"></i><div class="ITit">Inserir</div></a>
+        </div>
+        ';
+
+        $response = json_decode(Session::get('resp'));
+        if ($response){
+            $mensagem = implode('<br />', $response->mensagem);
             echo '
-            <div class="Msg'.(($resp->response)?' success':' danger').'">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <div class="Msg'.(($response->resp)?' Success':' Danger').'">
+                <button type="button" class="Close">×</button>
                 '.$mensagem.'
             </div>
             ';
         }
-
-        echo '<a type="button" class="Button info" title="Inserir '.$title.'" href="'.(($route)?$route.'/inserir':'').'"><i class="fa fa-plus"></i><div class="ITit">Inserir</div></a>';
-
         if ($produtosTipo[0]) {
             foreach ($produtosTipo as $produtosTipoRow) { //DADOS
                 $produtosTipoPrint .= '
@@ -40,12 +41,12 @@
                         <td>'.$produtosTipoRow->nome_ptp.'</td>
                         <td>'.date("d/m/Y",strtotime($produtosTipoRow->first_date_ptp)).'</td>
                         <td>'.(($produtosTipoRow->status_ptp)
-                                ?'<div type="button" class="success">Ativado</div>'
-                                :'<div type="button" class="danger">Desativado</div>').'</td>
+                                ?'<div class="Block Success">Ativado</div>'
+                                :'<div class="Block Danger">Desativado</div>').'</td>
                         <td>
                         <div class="IBlock">
-                            <a type="button" class="warning alterar" title="Editar '.$produtosRow->nome_pro.'" href="'.(($route)?$route.'/'.$produtosRow->id_pro.'/editar':'').'"><i class="fa fa-edit"></i></a>
-                            <a type="button" class="danger  deletar" title="Deletar '.$produtosRow->nome_pro.'" href="'.(($route)?$route.'/'.$produtosRow->id_pro:'').'"><i class="fa fa-times"></i></a>
+                            <a type="button" class="Warning alterar" title="Editar '.$produtosTipoRow->nome_ptp.'" href="'.(($route)?$route.'/'.$produtosTipoRow->id_ptp.'/editar':'').'"><i class="fa fa-edit"></i></a>
+                            <a type="button" class="Danger  deletar" title="Deletar '.$produtosTipoRow->nome_ptp.'" href="'.(($route)?$route.'/'.$produtosTipoRow->id_ptp:'').'"><i class="fa fa-times"></i></a>
                         </div>
                         </td>
                     </tr>
@@ -84,7 +85,7 @@
 echo '
 <script>
 $(function() {
-    $(".close").click(function(){
+    $(".Close").click(function(){
         $(this).parent().fadeOut();
     });
 

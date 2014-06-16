@@ -12,7 +12,7 @@ class ConteudoController extends \BaseController {
         $texto = preg_replace("(ú|ù|û|ü)",			"u",$texto);
         $texto = str_replace("ç",					"c",$texto);
 
-        return preg_replace("/[^a-zA-Z ]/", "", $texto);
+        return preg_replace("/[^a-zA-Z0-9 ]/", "", $texto);
     }
 
     public function Uploader($fileName, $idCon, $titulo=null, $idArea='avulsos') //Remove caracteres especiais e acentuação
@@ -67,5 +67,19 @@ class ConteudoController extends \BaseController {
         return View::make('Default')
             ->with(Config::get('Globals'))
             ;
+    }
+
+
+    public function mudarTema()
+    {
+        if (Session::get('tema')) {
+            $tema = Session::get('tema');
+        } else {
+            $tema = ['Tema1','Tema2'];//Seta um valor padrão se não existir tema selecionado
+        }
+
+        Session::put('tema', array_reverse($tema));
+
+        return json_encode(['tema' => Session::get('tema')]);
     }
 }

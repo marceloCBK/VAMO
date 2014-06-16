@@ -10,7 +10,12 @@
     <div class="ContentWrap Center">
         <div class="Box CVert">
             @if (Session::has('flash_error'))
-            <div class="Block Center"><div class="ErrorBox"><% Session::get('flash_error') %></div></div>
+            <div class="Block Center">
+                <div class="Msg Danger">
+                    <button type="button" class="Close">×</button>
+                    <% Session::get('flash_error') %>
+                </div>
+            </div>
             @endif
             <?php
             //print_r(Session::get('user'));
@@ -36,6 +41,14 @@
         </div>
     </div>
 </div>
-
 @stop
 
+@section('scripts')
+<script type="text/javascript">
+    $(function() {
+        $(".Close").click(function(){
+            $(this).parent().fadeOut();
+        });
+    });
+</script>
+@stop

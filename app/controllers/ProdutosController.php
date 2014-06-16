@@ -9,7 +9,7 @@ class ProdutosController extends \BaseController {
 	 */
 	public function index()
 	{
-        $produtos = Produtos::orderBy('id_ptp_pro', 'ASC')->orderBy('id_pro', 'DESC')->paginate(10);
+        $produtos = Produtos::orderBy('id_pro', 'DESC')->paginate(20);
 		return View::make('ListProdutos')
             ->with(Config::get('Globals'))
             ->with(
@@ -70,12 +70,47 @@ class ProdutosController extends \BaseController {
             $produtos->descricao_pro = $form['descricao_pro'];
             $produtos->first_date_pro = date("Y-m-d");
             $resp = $produtos->save();
+
+            if ($resp) {
+                //Upload->
+                $id = $produtos->id_pro;//seleciona id da submissão referente
+                $titulo = ConteudoController::CharSP($produtos->nome_pro); //Usa o titulo do trabalho como nome de arquivo
+                $fileName = 'nome_arq';
+                if(Input::hasFile($fileName)){
+                    $arquivos   = Arquivos::where('id_fk_arq', $id)->first();
+                    //$titulo    .= (($arquivos->count())?$arquivos->count():'');
+
+                    if ($arquivos->id_arq) {//remove o arquivo anterior
+                        $file = $_SERVER['DOCUMENT_ROOT'].$arquivos->caminho_arq.'/'.$arquivos->nome_arq;
+                        if (file_exists($file)) {
+                            unlink($file);
+                        }
+                    }
+
+                    $idArea     = 'produtos';
+                    //retorna "Upload não realizado! Arquivo não encontrado!" se o usuario não enviar o arquivo
+                    $respUp = ConteudoController::Uploader($fileName, $id, $titulo, $idArea);
+                    $error['respUp'] = $respUp['error'];
+
+                    if ($respUp['resp']) {
+                        if (!($arquivos->id_arq)) {
+                            $arquivos = new Arquivos();
+                        }
+                        $arquivos->nome_arq = $respUp['nome'];
+                        $arquivos->id_fk_arq = $id;
+                        //$arquivos->id_ars_arq = $idArea;
+                        $arquivos->caminho_arq = $respUp['caminho'];
+                        $respArquivos = $arquivos->save();
+                    }
+                }
+                //Upload<-
+            }
         }
 
-        $id = $produtos->id_pro;
         $acao = 'inserido';
-        if ($resp) {$menssagem[] = '<b>'.$produtos->nome_pro.'</b> '.$acao.' com sucesso!';}
-        else       {$menssagem[] = 'Ops! Um <b>problema</b> aconteceu. <b>Tente novamente</b> mais tarde.';}
+        if ($resp)          {$menssagem[] = '<b>'.$produtos->nome_pro.'</b> '.$acao.' com sucesso!';}
+        else                {$menssagem[] = 'Ops! Um <b>problema</b> aconteceu. <b>Tente novamente</b> mais tarde.';}
+        if ($respArquivos)  {$menssagem[] = 'Arquivo <b>'.$arquivos->nome_arq.'</b> foi adicionado com sucesso!';}
 
         $resp = json_encode(array(
             'resp'      => $resp,
@@ -160,13 +195,47 @@ class ProdutosController extends \BaseController {
             $produtos->descricao_pro = $form['descricao_pro'];
             $produtos->status_pro = $form['status_pro'];
             $resp = $produtos->save();
+
+            if ($resp) {
+                //Upload->
+                $id = $produtos->id_pro;//seleciona id da submissão referente
+                $titulo = ConteudoController::CharSP($produtos->nome_pro); //Usa o titulo do trabalho como nome de arquivo
+                $fileName = 'nome_arq';
+                if(Input::hasFile($fileName)){
+                    $arquivos   = Arquivos::where('id_fk_arq', $id)->first();
+                    //$titulo    .= (($arquivos->count())?$arquivos->count():'');
+
+                    if ($arquivos->id_arq) {//remove o arquivo anterior
+                        $file = $_SERVER['DOCUMENT_ROOT'].$arquivos->caminho_arq.'/'.$arquivos->nome_arq;
+                        if (file_exists($file)) {
+                            unlink($file);
+                        }
+                    }
+
+                    $idArea     = 'produtos';
+                    //retorna "Upload não realizado! Arquivo não encontrado!" se o usuario não enviar o arquivo
+                    $respUp = ConteudoController::Uploader($fileName, $id, $titulo, $idArea);
+                    $error['respUp'] = $respUp['error'];
+
+                    if ($respUp['resp']) {
+                        if (!($arquivos->id_arq)) {
+                            $arquivos = new Arquivos();
+                        }
+                        $arquivos->nome_arq = $respUp['nome'];
+                        $arquivos->id_fk_arq = $id;
+                        //$arquivos->id_ars_arq = $idArea;
+                        $arquivos->caminho_arq = $respUp['caminho'];
+                        $respArquivos = $arquivos->save();
+                    }
+                }
+                //Upload<-
+            }
         }
 
-
-        $id = $produtos->id_pro;
         $acao = 'atualizado';
-        if ($resp) {$menssagem[] = '<b>'.$produtos->nome_pro.'</b> '.$acao.' com sucesso!';}
-        else       {$menssagem[] = 'Ops! Um <b>problema</b> aconteceu. <b>Tente novamente</b> mais tarde.';}
+        if ($resp)          {$menssagem[] = '<b>'.$produtos->nome_pro.'</b> '.$acao.' com sucesso!';}
+        else                {$menssagem[] = 'Ops! Um <b>problema</b> aconteceu. <b>Tente novamente</b> mais tarde.';}
+        if ($respArquivos)  {$menssagem[] = 'Arquivo <b>'.$arquivos->nome_arq.'</b> foi adicionado com sucesso!';}
 
         $resp = json_encode(array(
             'resp'      => $resp,
@@ -191,11 +260,25 @@ class ProdutosController extends \BaseController {
             $produtos = Produtos::find($id);
             $resp = $produtos->delete();
 
-            //Recarrega pagina via jQuery na view
-            return json_encode(array(
-                'id'=>$id,
-                'resp'=>$resp,
+            $acao = 'deletado';
+            if ($resp) {$menssagem[] = '<b>'.$produtos->nome_pro.'</b> '.$acao.' com sucesso!';}
+            else       {$menssagem[] = 'Ops! Um <b>problema</b> aconteceu. <b>Tente novamente</b> mais tarde.';}
+
+            $resp = json_encode(array(
+                'resp'      => $resp,
+                'mensagem'  => $menssagem,
+                'id'        => $id,
             ));
+
+            /*if ($resp){
+                return Redirect::to('produtos')
+                    ->with(array('resp' => $resp))
+                ;
+            } else {
+            }*/
+
+            //Recarrega pagina via jQuery na view
+            return $resp;
         }
 	}
 

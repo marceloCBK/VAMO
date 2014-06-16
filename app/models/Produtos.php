@@ -14,4 +14,8 @@ class Produtos extends Eloquent {
     public function tipo(){
         return $this->belongsTo('ProdutosTipo', 'id_ptp_pro', 'id_ptp');
     }
+
+    public function arquivos(){
+        return $this->hasMany('Arquivos', 'id_fk_arq', 'id_pro');
+    }
 } 

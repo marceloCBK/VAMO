@@ -14,41 +14,50 @@
 @stop
 
 @section('conteudo')
-
 <div class="ContentMain Center">
     <div class="ContentWrap">
-        <h1><% $title %></h1>
-
         <?php
-        $resp = json_decode(Session::get('resp'));
-        //print_r($resp);
-        if ($resp){
-            $mensagem = implode('<br />', $resp->mensagem);
+
+        echo '
+        <div class="TopContents">
+            <div class="Titulo">'.$title.'</div>
+            <a type="button" class="Button info" title="Inserir '.$title.'" href="'.(($route)?$route.'/inserir':'').'"><i class="fa fa-plus"></i><div class="ITit">Inserir</div></a>
+        </div>
+        ';
+
+        $response = json_decode(Session::get('resp'));
+        if ($response){
+            $mensagem = implode('<br />', $response->mensagem);
             echo '
-            <div class="Msg'.(($resp->response)?' success':' danger').'">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <div class="Msg'.(($response->resp)?' Success':' Danger').'">
+                <button type="button" class="Close">×</button>
                 '.$mensagem.'
             </div>
             ';
         }
-
-        echo '<a type="button" class="Button info" title="Inserir '.$title.'" href="'.(($route)?$route.'/inserir':'').'"><i class="fa fa-plus"></i><div class="ITit">Inserir</div></a>';
-
         if ($produtos[0]) {
             foreach ($produtos as $produtosRow) { //DADOS
+                if ($produtosRow->arquivos[0]) {
+                    $routeImg = $produtosRow->arquivos[0]->caminho_arq.'/'.$produtosRow->arquivos[0]->nome_arq;
+                    $vitrine = '<div class="Img"><img src="'.$routeImg.'" alt="'.$produtosRow->nome_pro.'" width="100%" /></div>';
+                } else {
+                    unset($vitrine);
+                }
+
                 $produtosPrint .= '
                     <tr'.(($resp->id==$produtosRow->id_pro)?' class="Marcar"':'').'>
+                        <td>'.$vitrine.'</td>
                         <td>'.$produtosRow->nome_pro.'</td>
                         <td>'.$produtosRow->descricao_pro.'</td>
                         <td>'.$produtosRow->tipo->nome_ptp.'</td>
                         <td>'.date("d/m/Y",strtotime($produtosRow->first_date_pro)).'</td>
                         <td>'.(($produtosRow->status_pro)
-                                ?'<div type="button" class="success">Ativado</div>'
-                                :'<div type="button" class="danger">Desativado</div>').'</td>
+                            ?'<div class="Block Success">Ativado</div>'
+                            :'<div class="Block Danger">Desativado</div>').'</td>
                         <td>
                         <div class="IBlock">
-                            <a type="button" class="warning alterar" title="Editar '.$produtosRow->nome_pro.'" href="'.(($route)?$route.'/'.$produtosRow->id_pro.'/editar':'').'"><i class="fa fa-edit"></i></a>
-                            <a type="button" class="danger  deletar" title="Deletar '.$produtosRow->nome_pro.'" href="'.(($route)?$route.'/'.$produtosRow->id_pro:'').'"><i class="fa fa-times"></i></a>
+                            <a type="button" class="Warning alterar" title="Editar '.$produtosRow->nome_pro.'" href="'.(($route)?$route.'/'.$produtosRow->id_pro.'/editar':'').'"><i class="fa fa-edit"></i></a>
+                            <a type="button" class="Danger  deletar" title="Deletar '.$produtosRow->nome_pro.'" href="'.(($route)?$route.'/'.$produtosRow->id_pro:'').'"><i class="fa fa-times"></i></a>
                         </div>
                         </td>
                     </tr>
@@ -62,6 +71,7 @@
             <table class="Table">
                 <thead>
                 <tr>
+                    <th>Imagem de Vitrine</th>
                     <th>Nome</th>
                     <th class="col-lg-6">Descrição</th>
                     <th>Tipo</th>
@@ -86,10 +96,11 @@
 @section('scripts')
 
 <?php
+#TODO Criar janela modal para confirmação de exclusão
 echo '
-<script>
+<script type="text/javascript">
 $(function() {
-    $(".close").click(function(){
+    $(".Close").click(function(){
         $(this).parent().fadeOut();
     });
 
