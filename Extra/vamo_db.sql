@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 09, 2014 at 04:16 AM
+-- Generation Time: Jun 16, 2014 at 04:21 AM
 -- Server version: 5.5.23
 -- PHP Version: 5.4.12
 
@@ -37,7 +37,24 @@ CREATE TABLE IF NOT EXISTS `arquivos_arq` (
   `caminho_arq` varchar(255) DEFAULT NULL,
   `extra1_arq` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_arq`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+
+--
+-- Dumping data for table `arquivos_arq`
+--
+
+INSERT INTO `arquivos_arq` (`id_arq`, `nome_arq`, `estensao_arq`, `id_fk_arq`, `id_ars_arq`, `caminho_arq`, `extra1_arq`) VALUES
+(4, 'capaceteYam.jpg', NULL, 10, NULL, '/uploads/produtos/10', NULL),
+(5, 'pneuMichelin.jpg', NULL, 8, NULL, '/uploads/produtos/8', NULL),
+(6, 'pneuMaxxis.jpg', NULL, 5, NULL, '/uploads/produtos/5', NULL),
+(7, 'turbo.jpg', NULL, 9, NULL, '/uploads/produtos/9', NULL),
+(8, 'outroEscape.jpg', NULL, 11, NULL, '/uploads/produtos/11', NULL),
+(9, 'capaceteNoriskFfMonoCodMono.jpg', NULL, 12, NULL, '/uploads/produtos/12', NULL),
+(10, 'ponteiraEsportivaCbWacsWCodCbw.jpg', NULL, 13, NULL, '/uploads/produtos/13', NULL),
+(11, 'ponteiraCbRProTorkVPreto.jpg', NULL, 14, NULL, '/uploads/produtos/14', NULL),
+(12, 'capaceteProTorkGDogFundoBranco.jpg', NULL, 15, NULL, '/uploads/produtos/15', NULL),
+(13, 'escapamentoCbFJeskapKInoxFoscoFull.jpg', NULL, 16, NULL, '/uploads/produtos/16', NULL),
+(14, 'pneuMichelin10010018Ac10Traseiro.jpg', NULL, 17, NULL, '/uploads/produtos/17', NULL);
 
 -- --------------------------------------------------------
 
@@ -73,17 +90,19 @@ CREATE TABLE IF NOT EXISTS `produtos_pro` (
   `last_date_pro` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `first_date_pro` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id_pro`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=18 ;
 
 --
 -- Dumping data for table `produtos_pro`
 --
 
 INSERT INTO `produtos_pro` (`id_pro`, `id_ptp_pro`, `status_pro`, `nome_pro`, `descricao_pro`, `last_date_pro`, `first_date_pro`) VALUES
-(1, 1, 1, 'Capacete Honda', 'Capacete HondaCapacete HondaCapacete Honda', '2014-06-08 03:29:44', '2014-06-07 04:00:00'),
-(5, 2, NULL, 'Pneu Maxxis', 'Pneu MaxxisPneu MaxxisPneu MaxxisPneu MaxxisPneu MaxxisPneu MaxxisPneu MaxxisPneu MaxxisPneu MaxxisPneu MaxxisPneu MaxxisPneu MaxxisPneu MaxxisPneu Maxxis', '2014-06-08 16:51:21', '2014-06-07 04:00:00'),
-(7, 1, 1, 'Capacete San Marino', 'Capacete San MarinoCapacete San MarinoCapacete San MarinoCapacete San Marino', '2014-06-08 16:41:25', '2014-06-08 04:00:00'),
-(8, 2, 1, 'Pneu Michelin', 'Pneu MichelinPneu MichelinPneu Michelin', '2014-06-08 17:03:59', '2014-06-08 04:00:00');
+(12, 1, 1, 'CAPACETE NORISK FF391 MONO - COD MONO01', 'Os Capacetes Norisk aliam qualidade, segurança e leveza. Um dos capacetes mais levez do mercado, com apenas 1.360g, além de possuir grafismo surpreendente.', '2014-06-15 23:49:26', '2014-06-15 04:00:00'),
+(13, 3, 1, 'PONTEIRA ESPORTIVA CB 300 WACS W1 - COD. CB300W1', 'Os Escapes Wacs W1 são produzidos em alumínio de altíssima qualidade, e o melhor de tudoSão Escapes Brasileiros no qual proporcionam assim uma ótima relação Custo X benefício', '2014-06-15 23:49:11', '2014-06-15 04:00:00'),
+(14, 3, 1, 'PONTEIRA CB 300 R PRO TORK V3 PRETO', 'Ponteira Pro Tork v3:\r\n\r\nFabricado em alumínio escovado, resistente e leve, o escapamento Pro Tork V3 produz efeito sonoro esportivo, dando a impressão de ser uma moto de maior cilindrada. Possui bocal injetado em resina de carbono para suportar altas temperaturas. ', '2014-06-15 23:49:02', '2014-06-15 04:00:00'),
+(15, 1, 1, 'CAPACETE PRO TORK 3G DOG FUNDO BRANCO', 'O Capacete Pro Tork Evolution 3G Dog vem ganhando mercado, pela ousadia da Marca Pro Tork que vem oferecendo um produto de qualidade, melhor custo benefício e por ser a maior empresa de moto peças da America Latina.', '2014-06-15 23:48:52', '2014-06-15 04:00:00'),
+(16, 1, NULL, 'ESCAPAMENTO CB 500F JESKAP K5 INOX FOSCO FULL', 'O escapamento Jeskap CB 500F deixa sua moto mais leve, mais potente e muito mais bonita. Fabricado em Aluminio e pesa apenas 1 kg.', '2014-06-15 23:55:51', '2014-06-15 04:00:00'),
+(17, 4, 1, 'PNEU MICHELIN 100/100-18 AC10 TRASEIRO', 'Não deixe sua moto sem ele! O Pneu Michelin S1 possui qualidade superior e excelente rendimento quilométrico. Em se tratando de custo x benefício ele se torna uma referência.', '2014-06-15 23:56:53', '2014-06-15 04:00:00');
 
 -- --------------------------------------------------------
 
@@ -106,8 +125,8 @@ CREATE TABLE IF NOT EXISTS `produtos_tipo_ptp` (
 
 INSERT INTO `produtos_tipo_ptp` (`id_ptp`, `status_ptp`, `nome_ptp`, `last_date_ptp`, `first_date_ptp`) VALUES
 (1, 1, 'Capacetes', NULL, NULL),
-(2, NULL, 'Pneus', '2014-06-08 17:45:04', NULL),
-(3, 1, 'Escapamentos', '2014-06-08 17:45:08', '2014-06-08 04:00:00');
+(3, 1, 'Escapamentos', '2014-06-08 17:45:08', '2014-06-08 04:00:00'),
+(4, 1, 'Pneus', '2014-06-15 23:56:45', '2014-06-15 04:00:00');
 
 -- --------------------------------------------------------
 

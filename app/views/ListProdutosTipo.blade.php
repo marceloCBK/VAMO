@@ -20,7 +20,7 @@
         echo '
         <div class="TopContents">
             <div class="Titulo">'.$title.'</div>
-            <a type="button" class="Button info" title="Inserir '.$title.'" href="'.(($route)?$route.'/inserir':'').'"><i class="fa fa-plus"></i><div class="ITit">Inserir</div></a>
+            <a class="Button info" title="Inserir '.$title.'" href="'.(($route)?$route.'/inserir':'').'"><i class="fa fa-plus"></i><div class="ITit">Inserir</div></a>
         </div>
         ';
 
@@ -29,7 +29,7 @@
             $mensagem = implode('<br />', $response->mensagem);
             echo '
             <div class="Msg'.(($response->resp)?' Success':' Danger').'">
-                <button type="button" class="Close">×</button>
+                <button class="Close">×</button>
                 '.$mensagem.'
             </div>
             ';
@@ -45,8 +45,8 @@
                                 :'<div class="Block Danger">Desativado</div>').'</td>
                         <td>
                         <div class="IBlock">
-                            <a type="button" class="Warning alterar" title="Editar '.$produtosTipoRow->nome_ptp.'" href="'.(($route)?$route.'/'.$produtosTipoRow->id_ptp.'/editar':'').'"><i class="fa fa-edit"></i></a>
-                            <a type="button" class="Danger  deletar" title="Deletar '.$produtosTipoRow->nome_ptp.'" href="'.(($route)?$route.'/'.$produtosTipoRow->id_ptp:'').'"><i class="fa fa-times"></i></a>
+                            <a class="Warning alterar" title="Editar '.$produtosTipoRow->nome_ptp.'" href="'.(($route)?$route.'/'.$produtosTipoRow->id_ptp.'/editar':'').'"><i class="fa fa-edit"></i></a>
+                            <a class="Danger  deletar" title="Deletar '.$produtosTipoRow->nome_ptp.'" href="'.(($route)?$route.'/'.$produtosTipoRow->id_ptp:'').'"><i class="fa fa-times"></i></a>
                         </div>
                         </td>
                     </tr>

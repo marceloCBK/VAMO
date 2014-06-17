@@ -70,9 +70,9 @@ $title = (($id)?'Editar ':'Inserir ').'Produto';
                 </div>
                 <div class="Field">
                     <% Form::label(($fieldName = 'descricao_pro'), ($labelname = 'Descrição').':', array('class'=>'Tit')) %>
-                    <% Form::textarea($fieldName, Input::old($fieldName), array('class'=>'Input', 'placeholder'=>$labelname, 'cols'=>'none', 'rows'=>'7')) %>
+                    <% Form::textarea($fieldName, Input::old($fieldName), array('class'=>'Input', 'placeholder'=>$labelname, 'cols'=>'1', 'rows'=>'7')) %>
                 </div>
-                <div class="Block"></div>
+                <div class="Block">
                     <div class="Field Status">
                         <% Form::label(($fieldName = 'status_pro'), ($labelname = 'Status').':', array('class'=>'Tit Box')) %>
                         <% Form::checkbox($fieldName, 1, $produtos->status_pro,['class' => 'Radio Box']); %>

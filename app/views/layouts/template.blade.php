@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE HTML>
+<html lang="pt-BR" xml:lang="pt-BR">
 
 <head>
     <meta charset="utf-8">
@@ -25,10 +25,18 @@ if (Session::get('tema')) {
 <body class="<% $tema[0] %>">
 
 <div class="Wrap">
-    <a class="Mudar Medio"  title="Alterar Tema" href="/mudar" ><i class="fa fa-eye"></i></a>
-    <a class="Logout Medio" title="Sair do VAMO" href="/logout"><i class="fa fa-sign-out"></i></a>
+    <div class="TopIcons TopLeft">
+        <a class="Icon FontPlus Medio"  title="Aumentar Letras" href="/"  ><i class="fa fa-font"></i></a>
+        <a class="Icon FontNorm Medio"  title="Normalizar Letras" href="/"><i class="fa fa-font"></i></a>
+        <a class="Icon FontMinus Medio"  title="Diminuir Letras" href="/" ><i class="fa fa-font"></i></a>
+    </div>
+    <div class="TopIcons">
+        <a class="Icon Mudar Medio"  title="Alterar Tema" href="/mudar" ><i class="fa fa-eye"></i></a>
+        <a class="Icon Logout Medio" title="Sair do VAMO" href="/logout"><i class="fa fa-sign-out"></i></a>
+    </div>
     @include('IncSite.HeaderMain')
     @yield('conteudo')
+    @include('IncSite.FooterMain')
 </div>
 
 <script type="text/javascript" src="/js/jquery-1.11.1.min.js"></script>
@@ -51,6 +59,31 @@ $(function() {
 
             }
         });
+        return false;
+    });
+
+    $('.FontPlus').click(function() {
+        var size = $("body").css('font-size');
+
+        size = size.replace('px', '');
+        size = parseInt(size) +1;
+
+        $("body").css({"font-size":size+"px"});
+        return false;
+    });
+
+    $('.FontNorm').click(function() {
+        $("body").css({"font-size":"16px"});
+        return false;
+    });
+
+    $('.FontMinus').click(function() {
+        var size = $("body").css('font-size');
+
+        size = size.replace('px', '');
+        size = parseInt(size) -1;
+
+        $("body").css({"font-size":size+"px"});
         return false;
     });
 });

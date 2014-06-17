@@ -48,23 +48,31 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-/*
+
             //localhost
-            'host'      => 'localhost',
-            'database'  => 'vamo_db',
-            'username'  => 'root',
-            'password'  => '',
-            */
-      
-            //nitrous
             'host'      => 'localhost',
             'database'  => 'vamo_db',
             'username'  => 'root',
             'password'  => '123',
 
-			'charset'   => 'utf8',
+
+            //nitrous
+            'host'      => 'localhost',
+            'database'  => 'vamo_db',
+            'username'  => 'root',
+            'password'  => '123',
+/*
+
+            //hostinger
+            'host'      => 'localhost',
+            'database'  => 'u898925038_vamo',
+            'username'  => 'u898925038_root',
+            'password'  => '123123',
+
+            'charset'   => 'utf8',
 			'collation' => 'utf8_general_ci',
 			'prefix'    => '',
+            */
 		),
 
 	),

@@ -21,7 +21,7 @@
         echo '
         <div class="TopContents">
             <div class="Titulo">'.$title.'</div>
-            <a type="button" class="Button info" title="Inserir '.$title.'" href="'.(($route)?$route.'/inserir':'').'"><i class="fa fa-plus"></i><div class="ITit">Inserir</div></a>
+            <a class="Button info" title="Inserir '.$title.'" href="'.(($route)?$route.'/inserir':'').'"><i class="fa fa-plus"></i><div class="ITit">Inserir</div></a>
         </div>
         ';
 
@@ -39,7 +39,7 @@
             foreach ($produtos as $produtosRow) { //DADOS
                 if ($produtosRow->arquivos[0]) {
                     $routeImg = $produtosRow->arquivos[0]->caminho_arq.'/'.$produtosRow->arquivos[0]->nome_arq;
-                    $vitrine = '<div class="Img"><img src="'.$routeImg.'" alt="'.$produtosRow->nome_pro.'" width="100%" /></div>';
+                    $vitrine = '<div class="Img"><img src="'.$routeImg.'" alt="'.$produtosRow->nome_pro.'" /></div>';
                 } else {
                     unset($vitrine);
                 }
@@ -56,8 +56,8 @@
                             :'<div class="Block Danger">Desativado</div>').'</td>
                         <td>
                         <div class="IBlock">
-                            <a type="button" class="Warning alterar" title="Editar '.$produtosRow->nome_pro.'" href="'.(($route)?$route.'/'.$produtosRow->id_pro.'/editar':'').'"><i class="fa fa-edit"></i></a>
-                            <a type="button" class="Danger  deletar" title="Deletar '.$produtosRow->nome_pro.'" href="'.(($route)?$route.'/'.$produtosRow->id_pro:'').'"><i class="fa fa-times"></i></a>
+                            <a class="Warning alterar" title="Editar '.$produtosRow->nome_pro.'" href="'.(($route)?$route.'/'.$produtosRow->id_pro.'/editar':'').'"><i class="fa fa-edit"></i></a>
+                            <a class="Danger  deletar" title="Deletar '.$produtosRow->nome_pro.'" href="'.(($route)?$route.'/'.$produtosRow->id_pro:'').'"><i class="fa fa-times"></i></a>
                         </div>
                         </td>
                     </tr>

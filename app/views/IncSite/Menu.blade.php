@@ -11,9 +11,9 @@
         <?php
         echo $Menu = '
         <div class="MenuBox">
-            <a class="MenuButton Escuro" href="'.($link = '/inicio').'"               title="'.($siteName).'">                                    '.$MenuMark.'Início'.'</a>
-            <a class="MenuButton Escuro" href="'.($link = '/produtos').'"             title="'.($MenuName = "Produtos").'">                       '.$MenuMark.$MenuName.'</a>
-            <a class="MenuButton Escuro" href="'.($link = '/tipos').'"                title="'.($MenuName = "Tipos de Produtos").'">              '.$MenuMark.$MenuName.'</a>
+            <a class="MenuButton Escuro" href="'.($link = '/inicio').'"               title="'.($siteName).'">                                    <div>'.$MenuMark.'Início'.'</div></a>
+            <a class="MenuButton Escuro" href="'.($link = '/produtos').'"             title="'.($MenuName = "Produtos").'">                       <div>'.$MenuMark.$MenuName.'</div></a>
+            <a class="MenuButton Escuro" href="'.($link = '/tipos').'"                title="'.($MenuName = "Tipos de Produtos").'">              <div>'.$MenuMark.$MenuName.'</div></a>
         </div>
         ';
         ?>
