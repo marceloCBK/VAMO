@@ -411,6 +411,10 @@ select {
     width: 100%;
 }
 
+details, caption {
+    display: none;
+}
+
 .Table td {
     padding: 5px;
 }

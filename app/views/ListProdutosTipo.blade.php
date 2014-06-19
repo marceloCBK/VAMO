@@ -38,12 +38,12 @@
             foreach ($produtosTipo as $produtosTipoRow) { //DADOS
                 $produtosTipoPrint .= '
                     <tr'.(($resp->id==$produtosTipoRow->id_ptp)?' class="Marcar"':'').'>
-                        <td>'.$produtosTipoRow->nome_ptp.'</td>
-                        <td>'.date("d/m/Y",strtotime($produtosTipoRow->first_date_ptp)).'</td>
-                        <td>'.(($produtosTipoRow->status_ptp)
+                        <td headers="Nome">'.$produtosTipoRow->nome_ptp.'</td>
+                        <td headers="Desde">'.date("d/m/Y",strtotime($produtosTipoRow->first_date_ptp)).'</td>
+                        <td headers="Status">'.(($produtosTipoRow->status_ptp)
                                 ?'<div class="Block Success">Ativado</div>'
                                 :'<div class="Block Danger">Desativado</div>').'</td>
-                        <td>
+                        <td headers="Ações">
                         <div class="IBlock">
                             <a class="Warning alterar" title="Editar '.$produtosTipoRow->nome_ptp.'" href="'.(($route)?$route.'/'.$produtosTipoRow->id_ptp.'/editar':'').'"><i class="fa fa-edit"></i></a>
                             <a class="Danger  deletar" title="Deletar '.$produtosTipoRow->nome_ptp.'" href="'.(($route)?$route.'/'.$produtosTipoRow->id_ptp:'').'"><i class="fa fa-times"></i></a>
@@ -58,12 +58,15 @@
         echo '
         <div class="Block">
             <table class="Table">
+                <details><summary>Lista de '.$title.'</summary></details>
+                <caption>Lista de '.$title.'</caption>
+
                 <thead>
                 <tr>
-                    <th>Nome</th>
-                    <th>Desde</th>
-                    <th>Status</th>
-                    <th class="col-lg-1">Ações</th>
+                    <th id="Nome">Nome</th>
+                    <th id="Desde">Desde</th>
+                    <th id="Status">Status</th>
+                    <th id="Ações" class="col-lg-1">Ações</th>
                 </tr>
                 </thead>
                 <tbody>

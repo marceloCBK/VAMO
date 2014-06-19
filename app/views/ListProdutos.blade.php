@@ -45,16 +45,16 @@
                 }
 
                 $produtosPrint .= '
-                    <tr'.(($resp->id==$produtosRow->id_pro)?' class="Marcar"':'').'>
-                        <td>'.$vitrine.'</td>
-                        <td>'.$produtosRow->nome_pro.'</td>
-                        <td>'.$produtosRow->descricao_pro.'</td>
-                        <td>'.$produtosRow->tipo->nome_ptp.'</td>
-                        <td>'.date("d/m/Y",strtotime($produtosRow->first_date_pro)).'</td>
-                        <td>'.(($produtosRow->status_pro)
+                    <tr'.(($resp->id==$produtosRow->id_pro)?' class="Marcar"':'').' title="'.$produtosRow->nome_pro.'">
+                        <td headers="Imagem">'.$vitrine.'</td>
+                        <td headers="Nome">'.$produtosRow->nome_pro.'</td>
+                        <td headers="Descrição">'.$produtosRow->descricao_pro.'</td>
+                        <td headers="Tipo">'.$produtosRow->tipo->nome_ptp.'</td>
+                        <td headers="Desde">'.date("d/m/Y",strtotime($produtosRow->first_date_pro)).'</td>
+                        <td headers="Status">'.(($produtosRow->status_pro)
                             ?'<div class="Block Success">Ativado</div>'
                             :'<div class="Block Danger">Desativado</div>').'</td>
-                        <td>
+                        <td headers="Ações">
                         <div class="IBlock">
                             <a class="Warning alterar" title="Editar '.$produtosRow->nome_pro.'" href="'.(($route)?$route.'/'.$produtosRow->id_pro.'/editar':'').'"><i class="fa fa-edit"></i></a>
                             <a class="Danger  deletar" title="Deletar '.$produtosRow->nome_pro.'" href="'.(($route)?$route.'/'.$produtosRow->id_pro:'').'"><i class="fa fa-times"></i></a>
@@ -69,15 +69,18 @@
         echo '
         <div class="Block">
             <table class="Table">
+                <details><summary>Lista de '.$title.'</summary></details>
+                <caption>Lista de '.$title.'</caption>
+
                 <thead>
                 <tr>
-                    <th>Imagem de Vitrine</th>
-                    <th>Nome</th>
-                    <th class="col-lg-6">Descrição</th>
-                    <th>Tipo</th>
-                    <th>Desde</th>
-                    <th>Status</th>
-                    <th class="col-lg-1">Ações</th>
+                    <th id="Imagem">Imagem de Vitrine</th>
+                    <th id="Nome">Nome</th>
+                    <th id="Descrição" class="col-lg-6">Descrição</th>
+                    <th id="Tipo">Tipo</th>
+                    <th id="Desde">Desde</th>
+                    <th id="Status">Status</th>
+                    <th id="Ações" class="col-lg-1">Ações</th>
                 </tr>
                 </thead>
                 <tbody>
