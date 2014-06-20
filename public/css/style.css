@@ -154,7 +154,18 @@
 }
 
 .Icon {
+    float: left;
+    color: inherit;
+    background: inherit;
+    position: relative;
+    cursor: pointer;
     margin-right: 5px;
+
+    -webkit-transition: 0.2s;
+    -moz-transition: 0.2s;
+    -ms-transition: 0.2s;
+    -o-transition: 0.2s;
+    transition: 0.2s;
 }
 
 .Icon:last-child {
@@ -167,57 +178,34 @@
 }
 
 .FontPlus {
-    float: left;
-    color: inherit;
-    background: inherit;
-    position: relative;
-    cursor: pointer;
-    opacity: 0.5;
     font-size: 120%;
 }
 
 .FontMinus {
-    float: left;
-    color: inherit;
-    background: inherit;
-    position: relative;
-    cursor: pointer;
-    opacity: 0.5;
     font-size: 80%;
 }
 
 .FontNorm {
-    float: left;
-    color: inherit;
-    background: inherit;
-    position: relative;
-    cursor: pointer;
-    opacity: 0.5;
     font-size: 100%;
 }
 
 .Mudar {
-    float: left;
-    color: inherit;
-    background: inherit;
-    position: relative;
-    cursor: pointer;
-    opacity: 0.5;
 }
 
 .Logout {
-    float: left;
-    color: inherit;
-    background: inherit;
-    position: relative;
-    opacity: 0.5;
 }
 
-.FontPlus:hover,
+.Icon:hover,
 .Mudar:hover,
 .Logout:hover {
-    opacity: 1;
     border-color: inherit;
+}
+
+.TextDest {
+    float: left;
+    width: 100%;
+    margin: 10px 0px 40px 0px !important;
+    font-size: 120% !important;
 }
 
 .Msg {

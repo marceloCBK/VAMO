@@ -9,6 +9,7 @@
 <div class="ContentMain Center">
     <div class="ContentWrap">
         <div class="TopContents"><div class="Titulo"><% $title %></div></div>
+        <div class="TextDest Msg Escuro Center"><div class="Box">Use os Ícones nos cantos superior direito e esquerdo para melhorar a acessibilidade no site.</div></div>
         <div class="BlockHalf MenuButton Escuro">
             <div class="TopContents Escuro"><b>INTERFACE HOMEM COMPUTADOR</b></div>
             <div class="Block Medio"><b>Alunos:</b>
